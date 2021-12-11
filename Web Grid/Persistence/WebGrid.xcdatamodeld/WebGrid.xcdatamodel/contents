@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Container" representedClassName=".Container" syncable="YES">
+        <attribute name="sdevice" attributeType="String"/>
+        <attribute name="sorientation" attributeType="String"/>
+    </entity>
+    <entity name="Page" representedClassName="Page" syncable="YES">
+        <attribute name="order" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="url" attributeType="URI"/>
+        <relationship name="containers" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Container"/>
+    </entity>
+    <entity name="Site" representedClassName="Site" syncable="YES">
+        <attribute name="title" attributeType="String"/>
+        <relationship name="pages" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Page"/>
+    </entity>
+    <elements>
+        <element name="Container" positionX="-13.06640625" positionY="-95.06640625" width="111.32421875" height="73"/>
+        <element name="Page" positionX="-260.52734375" positionY="-63.11328125" width="128" height="103"/>
+        <element name="Site" positionX="-144" positionY="-45" width="128" height="59"/>
+    </elements>
+</model>

@@ -8,18 +8,56 @@
 
 /* Begin PBXBuildFile section */
 		A902709E27441B0F007076D2 /* Web_GridApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A902709D27441B0F007076D2 /* Web_GridApp.swift */; };
-		A90270A027441B0F007076D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A902709F27441B0F007076D2 /* ContentView.swift */; };
+		A90270A027441B0F007076D2 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A902709F27441B0F007076D2 /* PageView.swift */; };
 		A90270A227441B10007076D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90270A127441B10007076D2 /* Assets.xcassets */; };
 		A90270A527441B10007076D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90270A427441B10007076D2 /* Preview Assets.xcassets */; };
+		A90270AE27441B33007076D2 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90270AD27441B33007076D2 /* WebView.swift */; };
+		A90270B227441CC9007076D2 /* WebContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90270B127441CC9007076D2 /* WebContainer.swift */; };
+		A90270B527441D56007076D2 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90270B427441D56007076D2 /* Device.swift */; };
+		A90270B727441FE4007076D2 /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90270B627441FE3007076D2 /* Orientation.swift */; };
+		A90270B92744216D007076D2 /* ApplicationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90270B82744216D007076D2 /* ApplicationModel.swift */; };
+		A916D9312764EE8100957318 /* Site+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916D92F2764EE8100957318 /* Site+CoreDataClass.swift */; };
+		A916D9322764EE8100957318 /* Site+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916D9302764EE8100957318 /* Site+CoreDataProperties.swift */; };
+		A916D9362764F1BC00957318 /* EditableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916D9352764F1BC00957318 /* EditableLabel.swift */; };
+		A916D94227650A1000957318 /* ObjectIDAppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916D94127650A1000957318 /* ObjectIDAppStorage.swift */; };
+		A916D94427650C5100957318 /* ObjectIDSetAppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916D94327650C5100957318 /* ObjectIDSetAppStorage.swift */; };
+		A916D94627650EAA00957318 /* StorageProvider+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A916D94527650EAA00957318 /* StorageProvider+Environment.swift */; };
+		A9189E15275FF27F00D12EAE /* WebGrid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9189E13275FF27F00D12EAE /* WebGrid.xcdatamodeld */; };
+		A9189E18275FF35E00D12EAE /* StorageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9189E17275FF35E00D12EAE /* StorageProvider.swift */; };
+		A9189E1A275FF99900D12EAE /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9189E19275FF99900D12EAE /* Container.swift */; };
+		A9189E1F27601AF900D12EAE /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9189E1D27601AF900D12EAE /* Page.swift */; };
+		A9189E2027601AF900D12EAE /* Page+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9189E1E27601AF900D12EAE /* Page+CoreDataProperties.swift */; };
+		A9189E2427601DDA00D12EAE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9189E2327601DDA00D12EAE /* ContentView.swift */; };
+		A9189E2627601E3A00D12EAE /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9189E2527601E3A00D12EAE /* Sidebar.swift */; };
+		A9189E28276020C300D12EAE /* FocusedPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9189E27276020C300D12EAE /* FocusedPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A902709A27441B0F007076D2 /* Web Grid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Web Grid.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A902709D27441B0F007076D2 /* Web_GridApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Web_GridApp.swift; sourceTree = "<group>"; };
-		A902709F27441B0F007076D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A902709F27441B0F007076D2 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		A90270A127441B10007076D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A90270A427441B10007076D2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A90270A627441B10007076D2 /* Web_Grid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Web_Grid.entitlements; sourceTree = "<group>"; };
+		A90270AD27441B33007076D2 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		A90270B127441CC9007076D2 /* WebContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContainer.swift; sourceTree = "<group>"; };
+		A90270B427441D56007076D2 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		A90270B627441FE3007076D2 /* Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
+		A90270B82744216D007076D2 /* ApplicationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationModel.swift; sourceTree = "<group>"; };
+		A916D92F2764EE8100957318 /* Site+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Site+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A916D9302764EE8100957318 /* Site+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Site+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A916D9352764F1BC00957318 /* EditableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableLabel.swift; sourceTree = "<group>"; };
+		A916D94127650A1000957318 /* ObjectIDAppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectIDAppStorage.swift; sourceTree = "<group>"; };
+		A916D94327650C5100957318 /* ObjectIDSetAppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectIDSetAppStorage.swift; sourceTree = "<group>"; };
+		A916D94527650EAA00957318 /* StorageProvider+Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StorageProvider+Environment.swift"; sourceTree = "<group>"; };
+		A9189E14275FF27F00D12EAE /* WebGrid.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WebGrid.xcdatamodel; sourceTree = "<group>"; };
+		A9189E17275FF35E00D12EAE /* StorageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageProvider.swift; sourceTree = "<group>"; };
+		A9189E19275FF99900D12EAE /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
+		A9189E1D27601AF900D12EAE /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		A9189E1E27601AF900D12EAE /* Page+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Page+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A9189E2327601DDA00D12EAE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A9189E2527601E3A00D12EAE /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
+		A9189E27276020C300D12EAE /* FocusedPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusedPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,11 +90,14 @@
 		A902709C27441B0F007076D2 /* Web Grid */ = {
 			isa = PBXGroup;
 			children = (
+				A9189E16275FF34F00D12EAE /* Persistence */,
+				A90270B327441D4D007076D2 /* Model */,
+				A90270AC27441B2A007076D2 /* Views */,
 				A902709D27441B0F007076D2 /* Web_GridApp.swift */,
-				A902709F27441B0F007076D2 /* ContentView.swift */,
 				A90270A127441B10007076D2 /* Assets.xcassets */,
 				A90270A627441B10007076D2 /* Web_Grid.entitlements */,
 				A90270A327441B10007076D2 /* Preview Content */,
+				A9189E2327601DDA00D12EAE /* ContentView.swift */,
 			);
 			path = "Web Grid";
 			sourceTree = "<group>";
@@ -67,6 +108,46 @@
 				A90270A427441B10007076D2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A90270AC27441B2A007076D2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A9189E27276020C300D12EAE /* FocusedPage.swift */,
+				A902709F27441B0F007076D2 /* PageView.swift */,
+				A90270AD27441B33007076D2 /* WebView.swift */,
+				A90270B127441CC9007076D2 /* WebContainer.swift */,
+				A9189E2527601E3A00D12EAE /* Sidebar.swift */,
+				A916D9352764F1BC00957318 /* EditableLabel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A90270B327441D4D007076D2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A90270B427441D56007076D2 /* Device.swift */,
+				A90270B627441FE3007076D2 /* Orientation.swift */,
+				A90270B82744216D007076D2 /* ApplicationModel.swift */,
+				A9189E19275FF99900D12EAE /* Container.swift */,
+				A9189E1D27601AF900D12EAE /* Page.swift */,
+				A9189E1E27601AF900D12EAE /* Page+CoreDataProperties.swift */,
+				A916D92F2764EE8100957318 /* Site+CoreDataClass.swift */,
+				A916D9302764EE8100957318 /* Site+CoreDataProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A9189E16275FF34F00D12EAE /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				A9189E17275FF35E00D12EAE /* StorageProvider.swift */,
+				A916D94527650EAA00957318 /* StorageProvider+Environment.swift */,
+				A9189E13275FF27F00D12EAE /* WebGrid.xcdatamodeld */,
+				A916D94127650A1000957318 /* ObjectIDAppStorage.swift */,
+				A916D94327650C5100957318 /* ObjectIDSetAppStorage.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +220,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A90270A027441B0F007076D2 /* ContentView.swift in Sources */,
+				A90270AE27441B33007076D2 /* WebView.swift in Sources */,
+				A90270A027441B0F007076D2 /* PageView.swift in Sources */,
+				A90270B227441CC9007076D2 /* WebContainer.swift in Sources */,
+				A9189E2027601AF900D12EAE /* Page+CoreDataProperties.swift in Sources */,
+				A916D94627650EAA00957318 /* StorageProvider+Environment.swift in Sources */,
 				A902709E27441B0F007076D2 /* Web_GridApp.swift in Sources */,
+				A9189E1F27601AF900D12EAE /* Page.swift in Sources */,
+				A9189E18275FF35E00D12EAE /* StorageProvider.swift in Sources */,
+				A916D94427650C5100957318 /* ObjectIDSetAppStorage.swift in Sources */,
+				A90270B727441FE4007076D2 /* Orientation.swift in Sources */,
+				A916D9362764F1BC00957318 /* EditableLabel.swift in Sources */,
+				A9189E15275FF27F00D12EAE /* WebGrid.xcdatamodeld in Sources */,
+				A9189E1A275FF99900D12EAE /* Container.swift in Sources */,
+				A9189E2427601DDA00D12EAE /* ContentView.swift in Sources */,
+				A90270B92744216D007076D2 /* ApplicationModel.swift in Sources */,
+				A916D94227650A1000957318 /* ObjectIDAppStorage.swift in Sources */,
+				A916D9312764EE8100957318 /* Site+CoreDataClass.swift in Sources */,
+				A9189E2627601E3A00D12EAE /* Sidebar.swift in Sources */,
+				A9189E28276020C300D12EAE /* FocusedPage.swift in Sources */,
+				A916D9322764EE8100957318 /* Site+CoreDataProperties.swift in Sources */,
+				A90270B527441D56007076D2 /* Device.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +438,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A9189E13275FF27F00D12EAE /* WebGrid.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A9189E14275FF27F00D12EAE /* WebGrid.xcdatamodel */,
+			);
+			currentVersion = A9189E14275FF27F00D12EAE /* WebGrid.xcdatamodel */;
+			path = WebGrid.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A902709227441B0F007076D2 /* Project object */;
 }
