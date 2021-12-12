@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct Web_GridApp: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     let storageProvider = StorageProvider()
     @State var newURLString = "https://apple.com"
     @State var url = URL(string: "https://apple.com")!
@@ -23,7 +25,8 @@ struct Web_GridApp: App {
     @State var isStorageErrorPresented = false
     
     init() {
-//        try! storageProvider.removeAll()
+        appDelegate.storageProvider = storageProvider
+//        try? storageProvider.removeAll()
     }
     
     var body: some Scene {

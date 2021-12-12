@@ -22,7 +22,6 @@ struct PageView: View {
     
     @State var newURLString: String
     @State var reloadToken: Int = 0
-    @State var containers: [Container] = []
     
     @State var isErrorVisible: Bool = false
     @State var errorMessage: String = "" {
@@ -33,8 +32,9 @@ struct PageView: View {
         ScrollView([.horizontal, .vertical]) {
             HStack(alignment: .top) {
                 ForEach(page.containers) { container in
-                    WebContainer(container: container, url: page.url, reloadToken: 13)
-                        .padding()
+                    WebContainer(container: container, reloadToken: reloadToken, url: page.url) {
+                        try? storageProvider.deleteContainer(container, in: page)
+                    }.padding()
                 }
             }
             .frame(maxHeight: .infinity)

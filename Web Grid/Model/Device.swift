@@ -50,4 +50,17 @@ enum Device: String, Identifiable, CaseIterable {
             return landscapeSize
         }
     }
+    
+    var systemIconName: String {
+        switch self {
+        case .iPhone13, .iPhone13Mini:
+            return "iphone"
+        case .iPadPro11, .iPadPro13:
+            return "ipad"
+        case .macBook13:
+            return "laptopcomputer"
+        case .display720p, .display1080p:
+            return "display"
+        }
+    }
 }

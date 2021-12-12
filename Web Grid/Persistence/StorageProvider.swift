@@ -50,6 +50,11 @@ class StorageProvider {
         try context.save()
     }
     
+    public func deleteContainer(_ container: Container, in page: Page) throws {
+        persistentContainer.viewContext.delete(container)
+        try saveChanges()
+    }
+    
     public func saveChanges(rollbackOnFailure: Bool = true) throws {
         do {
             try persistentContainer.viewContext.save()

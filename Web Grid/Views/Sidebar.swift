@@ -24,9 +24,6 @@ struct Sidebar: View {
     let storageProvider: StorageProvider
     @Binding var selection: SidebarItem?
     
-    @FetchRequest(fetchRequest: Page.sortedFetchRequest(), animation: .default)
-    private var pages: FetchedResults<Page>
-    
     @FetchRequest(fetchRequest: Site.sortedFetchRequest(), animation: .default)
     private var sites: FetchedResults<Site>
     
@@ -38,7 +35,7 @@ struct Sidebar: View {
     
     private var lastSelectedPage: Page? {
         guard let pageID = lastSelectedPageID else { return nil }
-        return pages.first(where: { $0.objectID == pageID })
+        return sites.lazy.flatMap(\.pages).first(where: { $0.objectID == pageID })
     }
     
     @Namespace var sidebarNamespace
@@ -143,7 +140,7 @@ struct Sidebar: View {
         do {
             try storageProvider.deletePage(page)
             if case let .page(page) = selection, page.id == pageID {
-                selection = pages.first.map(SidebarItem.page)
+                selection = page.site.pages.first.map(SidebarItem.page)
             }
         } catch {
             errorMessage = "Failed to delete page"
@@ -155,7 +152,7 @@ struct Sidebar: View {
         do {
             try storageProvider.deleteSite(site)
             if case let .site(site) = selection, site.id == siteID {
-                selection = pages.first.map(SidebarItem.page)
+                selection = sites.first?.pages.first.map(SidebarItem.page)
             }
         } catch {
             errorMessage = "Failed to delete site"
