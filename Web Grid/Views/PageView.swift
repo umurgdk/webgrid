@@ -51,14 +51,12 @@ struct PageView: View {
         .onAppear { lastSelectedPageID = page.objectID }
         .navigationTitle(page.title)
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItemGroup {
                 TextField("URL", text: $newURLString)
+                    .frame(minWidth: 300, maxWidth: .infinity, alignment: .center)
                     .onSubmit(of: SubmitTriggers.text, updatePageURL)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(minWidth: 300)
-            }
-            
-            ToolbarItem(placement: .primaryAction) {
+
                 Menu {
                     ForEach(Device.allCases) { device in
                         Button(device.rawValue) { addContainer(device: device) }
@@ -67,7 +65,17 @@ struct PageView: View {
                     Label("Add container", systemImage: "plus")
                 }
             }
+            
+            ToolbarItem(placement: .navigation) {
+                Button(action: toggleSidebar) {
+                    Image(systemName: "sidebar.left")
+                }
+            }
         }
+    }
+    
+    func toggleSidebar() {
+        NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
     }
     
     func addContainer(device: Device) {

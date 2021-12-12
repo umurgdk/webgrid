@@ -18,17 +18,27 @@ struct WebContainer: View {
     @State var error: LocalizedError? = nil
     @State var isErrorPresented = false
     
+    @Environment(\.colorScheme) var systemColorScheme
+    
+    var appearanceBinding: Binding<Appearance> {
+        Binding {
+            container.appearance ?? Appearance(from: systemColorScheme)
+        } set: {
+            container.appearance = $0
+        }
+    }
+    
     var deviceSize: CGSize {
         container.device.size(from: container.orientation)
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(spacing: 8) {
             HStack(spacing: 8) {
                 ContainerPicker(Device.allCases,
                                 selection: $container.device,
-                                title: { $0.rawValue },
-                                icon: { $0.systemIconName })
+                                title: \.rawValue,
+                                icon: \.systemIconName)
                 
                 Circle()
                     .fill(.tertiary)
@@ -36,7 +46,18 @@ struct WebContainer: View {
                 
                 ContainerPicker(Orientation.allCases,
                                 selection: $container.orientation,
-                                title: { $0.rawValue })
+                                title: \.rawValue)
+                
+                
+                Circle()
+                    .fill(.tertiary)
+                    .frame(width: 4, height: 4)
+                
+                ContainerPicker(Appearance.allCases,
+                                selection: appearanceBinding,
+                                title: \.title,
+                                icon: { $0.iconName(system: systemColorScheme) })
+                    .showsTitleInSelection(false)
                 
                 Spacer()
                 
@@ -55,13 +76,15 @@ struct WebContainer: View {
                         .buttonStyle(.borderless)
                 }
             }
-            .padding(8)
+            .padding(.horizontal, 8)
+            .frame(height: 32, alignment: .leading)
             .background(RoundedRectangle(cornerRadius: 8).fill(.quaternary).opacity(0.5))
             .onHover { isHovered in
                 hoveringActionBar = isHovered
             }
             
             WebView(url: url, reloadToken: reloadToken)
+                .colorScheme(container.appearance?.colorScheme(system: systemColorScheme) ?? systemColorScheme)
                 .frame(width: deviceSize.width, height: deviceSize.height)
                 .animation(nil, value: deviceSize)
                 .cornerRadius(8)

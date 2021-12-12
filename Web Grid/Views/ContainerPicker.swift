@@ -7,18 +7,43 @@
 
 import SwiftUI
 
+fileprivate struct PickerConfiguration {
+    var showsTitleInSelection = true
+}
+
+fileprivate struct PickerConfigurationKey: EnvironmentKey {
+    static var defaultValue = PickerConfiguration()
+}
+
+fileprivate extension EnvironmentValues {
+    var pickerConfiguration: PickerConfiguration {
+        get { self[PickerConfigurationKey.self] }
+        set { self[PickerConfigurationKey.self] = newValue }
+    }
+}
+
+extension ContainerPicker {
+    func showsTitleInSelection(_ shows: Bool) -> some View {
+        var configuration = self.configuration
+        configuration.showsTitleInSelection = shows
+        return self.environment(\.pickerConfiguration, configuration)
+    }
+}
+
 struct ContainerPicker<Item: Hashable & Identifiable>: View {
     let items: [Item]
-    let title: (Item) -> String
+    let title: ((Item) -> String)?
     let icon: ((Item) -> String)?
     
     @Binding var selection: Item
+    
+    @Environment(\.pickerConfiguration) private var configuration
     
     init(
         _ items: [Item],
         selection: Binding<Item>,
         title: @escaping (Item) -> String,
-        icon: ((Item) -> String)? = nil
+        icon: @escaping (Item) -> String
     ) {
         self.items = items
         self._selection = selection
@@ -26,22 +51,37 @@ struct ContainerPicker<Item: Hashable & Identifiable>: View {
         self.icon = icon
     }
     
+    init(_ items: [Item], selection: Binding<Item>, title: @escaping (Item) -> String) {
+        self.items = items
+        self._selection = selection
+        self.title = title
+        self.icon = nil
+    }
+        
+    init(_ items: [Item], selection: Binding<Item>, icon: @escaping (Item) -> String) {
+        self.items = items
+        self._selection = selection
+        self.icon = icon
+        self.title = nil
+    }
+    
     var body: some View {
         HStack {
-            if let icon = icon {
+            if let icon = icon, let title = title, configuration.showsTitleInSelection {
                 Label(title(selection), systemImage: icon(selection))
-            } else {
+            } else if let title = title, configuration.showsTitleInSelection {
                 Text(title(selection))
+            } else if let icon = icon {
+                Image(systemName: icon(selection))
             }
             
             Image(systemName: "chevron.up.chevron.down")
                 .foregroundColor(.secondary)
         }.menuTrigger(items: items.map { item in
             MenuItem(id: item.id,
-                     title: title(item),
-                     systemImageName: icon?(item),
-                     action: selectItem)
-        })
+                     title: title?(item),
+                     systemImageName: icon?(item))
+        }, action: selectItem)
     }
     
     private func selectItem(_ itemID: Item.ID) {

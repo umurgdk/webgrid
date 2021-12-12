@@ -67,6 +67,17 @@ class StorageProvider {
     public func saveSite(title: String = "New Site") throws -> Site {
         let site = Site(context: persistentContainer.viewContext)
         site.title = title
+        
+        let page = Page(context: persistentContainer.viewContext)
+        page.title = "Home"
+        page.url = URL(string: "https://apple.com")!
+        site.addToPages(page)
+        
+        let container = Container(context: persistentContainer.viewContext)
+        container.device = .iPhone13Mini
+        container.orientation = .portrait
+        page.appendContainer(container)
+        
         try saveChanges()
         return site
     }

@@ -20,7 +20,7 @@ extension Container {
     @NSManaged public var sdevice: String
     @NSManaged public var sorientation: String
     @NSManaged public var page: Page
-
+    @NSManaged public var appearanceName: String?
 }
 
 extension Container : Identifiable {

@@ -118,10 +118,15 @@ struct Sidebar: View {
                     }
             }.tag(SidebarItem.site(site))
         }
+        .listStyle(SidebarListStyle())
         .onAppear { selection = lastSelectedPage.map(SidebarItem.page) }
+        .alert(errorMessage, isPresented: $isErrorPresented) {
+            Button("Okay", role: .cancel) { }
+        }
+        .focusScope(sidebarNamespace)
         .toolbar {
-            ToolbarItem { Spacer() }
-            ToolbarItem(placement: .automatic) {
+            ToolbarItemGroup {
+                Spacer()
                 Menu {
                     Button("New Page", action: addNewPage)
                     Button("New Site", action: addNewSite)
@@ -130,9 +135,6 @@ struct Sidebar: View {
                 }
             }
         }
-        .alert(errorMessage, isPresented: $isErrorPresented) {
-            Button("Okay", role: .cancel) { }
-        }.focusScope(sidebarNamespace)
     }
     
     func deletePage(_ page: Page) {
@@ -177,10 +179,16 @@ struct Sidebar: View {
     func addNewSite() {
         do {
             let site = try storageProvider.saveSite()
-            selection = .site(site)
-            renamingItem = selection
+            expandedSites.insert(site.objectID)
+            
+            renamingItem = .site(site)
+            if let page = site.pages.first {
+                selection = .page(page)
+                lastSelectedPageID = page.objectID
+            }
         } catch {
-            errorMessage = "Failed to create a new page"
+            errorMessage = "Failed to create a new site"
+            print("ERROR:", error.localizedDescription)
         }
     }
     

@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 @objc(Container)
 public class Container: NSManagedObject {
     var device: Device {
@@ -20,6 +19,11 @@ public class Container: NSManagedObject {
     var orientation: Orientation {
         get { Orientation(rawValue: sorientation) ?? .portrait }
         set { sorientation = newValue.rawValue }
+    }
+    
+    var appearance: Appearance? {
+        get { appearanceName.flatMap(Appearance.init(rawValue:)) }
+        set { appearanceName = newValue?.rawValue }
     }
     
     var canMoveLeft: Bool {
@@ -42,7 +46,6 @@ public class Container: NSManagedObject {
         
         do {
             try context.save()
-            print("Container moved left")
         } catch {
             context.rollback()
         }
@@ -60,7 +63,6 @@ public class Container: NSManagedObject {
         
         do {
             try context.save()
-            print("Container moved right")
         } catch {
             context.rollback()
         }

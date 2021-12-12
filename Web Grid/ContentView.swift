@@ -21,6 +21,7 @@ struct ContentView: View {
             Sidebar(storageProvider: storageProvider, selection: $sidebarSelection) 
             Color.clear
         }
+        .navigationViewStyle(.columns)
         .environment(\.managedObjectContext, storageProvider.persistentContainer.viewContext)
         .alert(errorMessage, isPresented: $isErrorPresented) {
             Button("Okay", role: .cancel) { }
