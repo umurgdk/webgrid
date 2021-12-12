@@ -10,6 +10,7 @@ import SwiftUI
 struct PageView: View {
     let storageProvider: StorageProvider
     @ObservedObject var page: Page
+    @FetchRequest var containers: FetchedResults<Container>
     
     @ObjectIDAppStorage("lastSelectedPage")
     private var lastSelectedPageID: NSManagedObjectID?
@@ -18,6 +19,7 @@ struct PageView: View {
         self.storageProvider = storageProvider
         self._page = ObservedObject(initialValue: page)
         self._newURLString = State(initialValue: page.url.absoluteString)
+        _containers = FetchRequest(fetchRequest: page.containersFetchRequest(), animation: .default)
     }
     
     @State var newURLString: String
@@ -31,10 +33,11 @@ struct PageView: View {
     var body: some View {
         ScrollView([.horizontal, .vertical]) {
             HStack(alignment: .top) {
-                ForEach(page.containers) { container in
+                ForEach(containers) { container in
                     WebContainer(container: container, reloadToken: reloadToken, url: page.url) {
                         try? storageProvider.deleteContainer(container, in: page)
-                    }.padding()
+                    }
+                    .padding()
                 }
             }
             .frame(maxHeight: .infinity)
@@ -69,9 +72,7 @@ struct PageView: View {
     
     func addContainer(device: Device) {
         do {
-            let container = try storageProvider.saveContainer(device: device, orientation: .portrait)
-            page.addToContainers(container)
-            try storageProvider.saveChanges(rollbackOnFailure: true)
+            try storageProvider.saveContainer(device: device, orientation: .portrait, in: page)
         } catch {
             errorMessage = "Failed to create a new container"
             isErrorVisible = true

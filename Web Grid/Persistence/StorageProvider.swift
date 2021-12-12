@@ -92,10 +92,11 @@ class StorageProvider {
         try saveChanges()
     }
     
-    public func saveContainer(device: Device, orientation: Orientation) throws -> Container {
+    public func saveContainer(device: Device, orientation: Orientation, in page: Page) throws -> Container {
         let container = Container(context: persistentContainer.viewContext)
         container.device = device
         container.orientation = orientation
+        page.appendContainer(container)
         
         do {
             try persistentContainer.viewContext.save()

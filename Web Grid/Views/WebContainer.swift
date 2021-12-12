@@ -41,16 +41,29 @@ struct WebContainer: View {
                 Spacer()
                 
                 if hoveringActionBar {
+                    if container.canMoveLeft {
+                        Button(action: container.moveLeft, label: { Image(systemName: "chevron.left") })
+                            .buttonStyle(.borderless)
+                    }
+                    
+                    if container.canMoveRight {
+                        Button(action: container.moveRight, label: { Image(systemName: "chevron.right") })
+                            .buttonStyle(.borderless)
+                    }
+                    
                     Button(action: onDelete, label: { Image(systemName: "trash") })
                         .buttonStyle(.borderless)
                 }
             }
             .padding(8)
             .background(RoundedRectangle(cornerRadius: 8).fill(.quaternary).opacity(0.5))
-            .onHover { hoveringActionBar = $0 }
+            .onHover { isHovered in
+                hoveringActionBar = isHovered
+            }
             
             WebView(url: url, reloadToken: reloadToken)
                 .frame(width: deviceSize.width, height: deviceSize.height)
+                .animation(nil, value: deviceSize)
                 .cornerRadius(8)
                 .padding(4)
                 .background(.quaternary)

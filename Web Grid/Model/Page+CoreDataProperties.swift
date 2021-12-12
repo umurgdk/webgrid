@@ -19,7 +19,7 @@ extension Page {
     @NSManaged public var order: Int32
     @NSManaged public var title: String
     @NSManaged public var url: URL
-    @NSManaged public var containers: [Container]
+    @NSManaged public var containers: Set<Container>
     @NSManaged public var site: Site
 
 }

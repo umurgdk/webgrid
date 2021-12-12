@@ -16,6 +16,7 @@ extension Container {
         return NSFetchRequest<Container>(entityName: "Container")
     }
 
+    @NSManaged public var order: Int16
     @NSManaged public var sdevice: String
     @NSManaged public var sorientation: String
     @NSManaged public var page: Page

@@ -21,4 +21,48 @@ public class Container: NSManagedObject {
         get { Orientation(rawValue: sorientation) ?? .portrait }
         set { sorientation = newValue.rawValue }
     }
+    
+    var canMoveLeft: Bool {
+        order > 0
+    }
+    
+    var canMoveRight: Bool {
+        order < page.containers.count - 1
+    }
+    
+    func moveLeft() {
+        guard let context = managedObjectContext, canMoveLeft else { return }
+        
+        let previousContainer = page.containers.filter { $0.order < self.order }.max(by: { $0.order < $1.order })
+        guard let previousContainer = previousContainer else { return }
+        
+        let order = self.order
+        self.order = previousContainer.order
+        previousContainer.order = order
+        
+        do {
+            try context.save()
+            print("Container moved left")
+        } catch {
+            context.rollback()
+        }
+    }
+    
+    func moveRight() {
+        guard let context = managedObjectContext, canMoveRight else { return }
+        
+        let nextContainer = page.containers.filter { $0.order > self.order }.min(by: { $0.order < $1.order })
+        guard let nextContainer = nextContainer else { return }
+        
+        let order = self.order
+        self.order = nextContainer.order
+        nextContainer.order = order
+        
+        do {
+            try context.save()
+            print("Container moved right")
+        } catch {
+            context.rollback()
+        }
+    }
 }
