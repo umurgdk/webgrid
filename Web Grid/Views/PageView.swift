@@ -88,6 +88,12 @@ struct PageView: View {
     }
     
     func updatePageURL() {
+        var urlString = newURLString
+        if !urlString.hasPrefix("http://") && !urlString.hasPrefix("https://") {
+            urlString = "http://" + urlString
+        }
+        
+        newURLString = urlString
         guard let url = URL(string: newURLString) else {
             errorMessage = "Please make sure url is valid"
             isErrorVisible = true
