@@ -30,11 +30,23 @@ struct PageView: View {
         didSet { isErrorVisible = !errorMessage.isEmpty }
     }
     
+    @State var zoom: CGFloat = 1
+    @State var lastZoomValue: CGFloat = 1
+    var magnificationGesture: some Gesture {
+        MagnificationGesture().onChanged { magnification in
+            let delta = magnification / lastZoomValue
+            lastZoomValue = magnification
+            zoom *= delta
+        }.onEnded { _ in
+            lastZoomValue = 1
+        }
+    }
+    
     var body: some View {
         ScrollView([.horizontal, .vertical]) {
             HStack(alignment: .top) {
                 ForEach(containers) { container in
-                    WebContainer(container: container, reloadToken: reloadToken, url: page.url) {
+                    WebContainer(container: container, reloadToken: reloadToken, url: page.url, zoom: zoom) {
                         try? storageProvider.deleteContainer(container, in: page)
                     }
                     .padding()
@@ -44,6 +56,7 @@ struct PageView: View {
             .padding()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .gesture(magnificationGesture)
         .focusedValue(\.page, page)
         .alert(errorMessage, isPresented: $isErrorVisible) {
             Button("Okay", role: .cancel) { }

@@ -12,6 +12,7 @@ struct WebContainer: View {
     @ObservedObject var container: Container
     let reloadToken: Int
     let url: URL
+    let zoom: CGFloat
     let onDelete: () -> Void
     
     @State var hoveringActionBar = false
@@ -30,6 +31,10 @@ struct WebContainer: View {
     
     var deviceSize: CGSize {
         container.device.size(from: container.orientation)
+    }
+    
+    var scaledDeviceSize: CGSize {
+        CGSize(width: deviceSize.width * zoom, height: deviceSize.height * zoom)
     }
     
     var body: some View {
@@ -83,10 +88,10 @@ struct WebContainer: View {
                 hoveringActionBar = isHovered
             }
             
-            WebView(url: url, reloadToken: reloadToken)
+            WebView(url: url, reloadToken: reloadToken, zoom: zoom, deviceSize: deviceSize)
+                .fixedSize()
                 .colorScheme(container.appearance?.colorScheme(system: systemColorScheme) ?? systemColorScheme)
-                .frame(width: deviceSize.width, height: deviceSize.height)
-                .animation(nil, value: deviceSize)
+                .animation(nil, value: scaledDeviceSize)
                 .cornerRadius(8)
                 .padding(4)
                 .background(.quaternary)
